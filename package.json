@@ -1,0 +1,11 @@
+{
+  "name": "node-pokemon-api",
+  "version": "1.0.0",
+  "description": "first nodejs project : Rest API to handle pokemons",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Lois",
+  "license": "ISC"
+}
