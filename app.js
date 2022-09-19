@@ -45,4 +45,12 @@ app.put('/api/pokemons/:id', (req, res) => {
   res.json(success(message, pokemonUpdated))
 })
 
+app.delete('/api/pokemons/:id', (req, res) => {
+  const id = parseInt(req.params.id)
+  const pokemonDeleted = pokemons.find(pokemon => pokemon.id === id)
+  pokemons = pokemons.filter(pokemon => pokemon.id !== id)
+  const message = (`Pokemon ${pokemonDeleted.name} was successfully deleted.`)
+  res.json(success(message, pokemonDeleted))
+})
+
 app.listen(port, () => console.log(`Our NodeJS API is running on http://localhost:${port}`));
