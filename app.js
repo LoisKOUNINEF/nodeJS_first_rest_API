@@ -8,7 +8,8 @@ const port = 3000;
 app.get('/', (req, res) => res.send('Hello, world !'));
 
 app.get('/api/pokemons', (req, res) => {
-  res.send(`There are a total of ${pokemons.length} Pokemons, for now.`)
+  const message = `There are ${pokemons.length} Pokemons`
+  res.json(success(message, pokemons))
 })
 
 app.get('/api/pokemons/:id', (req, res) => {
