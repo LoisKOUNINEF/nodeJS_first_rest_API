@@ -1,7 +1,8 @@
 const express = require('express');
 const morgan = require('morgan');
 const favicon = require('serve-favicon');
-const { success } = require('./helper');
+const bodyParser = require('body-parser');
+const { success, getUniqueId } = require('./helper');
 let pokemons = require('./mock-pokemon');
 
 const app = express();
@@ -9,7 +10,8 @@ const port = 3000;
 
 app
   .use(favicon(`${__dirname}/favicon.ico`))
-  .use(morgan('dev'));
+  .use(morgan('dev'))
+  .use(bodyParser.json())
 
 app.get('/', (req, res) => res.send('Hello, world !'));
 
@@ -23,6 +25,14 @@ app.get('/api/pokemons/:id', (req, res) => {
   const pokemon = pokemons.find(pokemon => pokemon.id === id)
   const message = `A pokemon with id ${id} was found.`
   res.json(success(message, pokemon))
+})
+
+app.post('/api/pokemons', (req, res) => {
+  const id = getUniqueId(pokemons)
+  const pokemonCreated = { ...req.body, ...{id: id, created: new Date()}}
+  pokemons.push(pokemonCreated)
+  const message = `Pokemon with id ${id} named ${pokemonCreated.name} was created.`
+  res.json(success(message, pokemonCreated))
 })
 
 app.listen(port, () => console.log(`Our NodeJS API is running on http://localhost:${port}`));
