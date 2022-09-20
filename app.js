@@ -14,8 +14,13 @@ app
 
 sequelize.initDb()
 
+// Read routes
 require('./src/routes/findAllPokemons')(app)
 require('./src/routes/findPokemonByPk')(app)
+
+// CUD routes
 require('./src/routes/createPokemon')(app)
+require('./src/routes/updatePokemon')(app)
+require('./src/routes/deletePokemon')(app)
 
 app.listen(port, () => console.log(`Our NodeJS API is running on http://localhost:${port}`));
