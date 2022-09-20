@@ -7,5 +7,9 @@ module.exports = (app) => {
         const message = 'Pokemons list fetched !'
         res.json({ message, data: pokemons })
       })
+      .catch(error => {
+        const message = 'Cannot fetch Pokemons list. Please try again in a moment.'
+        res.status(500).json({ message, data: error })
+      })
   })
 }
