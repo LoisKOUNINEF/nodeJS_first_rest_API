@@ -23,4 +23,10 @@ require('./src/routes/createPokemon')(app)
 require('./src/routes/updatePokemon')(app)
 require('./src/routes/deletePokemon')(app)
 
+// Errors catching
+app.use(({res}) => {
+  const message = 'Cannot find ressource requested. Perhaps you should try with a different URL.'
+  res.status(404).json({message})
+})
+
 app.listen(port, () => console.log(`Our NodeJS API is running on http://localhost:${port}`));
