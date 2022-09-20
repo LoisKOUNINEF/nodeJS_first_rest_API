@@ -31,8 +31,19 @@ sequelize.authenticate()
 const Pokemon = PokemonModel(sequelize, DataTypes)
 
 sequelize.sync({force: true})
-  .then(_ => console.log('DataBase "Pokedex" successfully synced.'))
-  .catch(error => console.error(`Cannot sync DataBase ${error}`))
+  .then(_ => {
+    console.log('DataBase "Pokedex" successfully synced.')
+
+    pokemons.map(pokemon => {
+      Pokemon.create({
+        name: pokemon.name,
+        hp: pokemon.hp,
+        cp: pokemon.cp,
+        picture: pokemon.picture,
+        types: pokemon.types.join()
+      }).then(pokemon => console.log(pokemon.toJSON()))
+    })
+  })
 
 app
   .use(favicon(`${__dirname}/favicon.ico`))
