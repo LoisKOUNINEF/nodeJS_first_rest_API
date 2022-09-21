@@ -23,6 +23,9 @@ require('./src/routes/createPokemon')(app)
 require('./src/routes/updatePokemon')(app)
 require('./src/routes/deletePokemon')(app)
 
+// User auth routes
+require('./src/routes/login')(app)
+
 // Errors catching
 app.use(({res}) => {
   const message = 'Cannot find ressource requested. Perhaps you should try with a different URL.'
