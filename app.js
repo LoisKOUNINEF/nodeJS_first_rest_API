@@ -15,16 +15,16 @@ app
 sequelize.initDb()
 
 // Read routes
-require('./src/routes/findAllPokemons')(app)
-require('./src/routes/findPokemonByPk')(app)
+require('./src/routes/pokemons/findAllPokemons')(app)
+require('./src/routes/pokemons/findPokemonByPk')(app)
 
 // CUD routes
-require('./src/routes/createPokemon')(app)
-require('./src/routes/updatePokemon')(app)
-require('./src/routes/deletePokemon')(app)
+require('./src/routes/pokemons/createPokemon')(app)
+require('./src/routes/pokemons/updatePokemon')(app)
+require('./src/routes/pokemons/deletePokemon')(app)
 
 // User auth routes
-require('./src/routes/login')(app)
+require('./src/routes/users/login')(app)
 
 // Errors catching
 app.use(({res}) => {
