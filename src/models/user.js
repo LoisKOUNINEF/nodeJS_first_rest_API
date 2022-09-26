@@ -9,10 +9,25 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: {
         msg: 'This name is already taken.'
-      }
+      },
+       validate: {
+        min: {
+          args: [4],
+          msg: 'Username has to be at least 4 characters.'
+        },
+        max: {
+          args: [12],
+          msg: 'Username cannot be longer than 12 characters.'
+        }
+       }
     },
     password: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      validate: {
+        min: {
+          args: [6],
+          msg: 'Password has to be at least 6 characters.'
+        },
     }
   })
 }
