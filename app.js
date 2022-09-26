@@ -25,6 +25,7 @@ require('./src/routes/pokemons/deletePokemon')(app)
 
 // User auth routes
 require('./src/routes/users/login')(app)
+require('./src/routes/users/signup')(app)
 
 // Errors catching
 app.use(({res}) => {
