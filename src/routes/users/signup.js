@@ -6,11 +6,10 @@ module.exports = (app) => {
   app.post('/api/signup', (req, res) => {
     bcrypt.hash(req.body.password, 10)
     .then((hash) => {
-      const user = new User({
+      User.create({
         username: req.body.username,
         password: hash
       })
-      user.save()
       .then(user => {
         const message = `User ${req.body.username} successfully created`
         res.json({ message, data: user})
